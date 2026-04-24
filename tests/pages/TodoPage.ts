@@ -53,7 +53,7 @@ export class TodoPage {
   async deleteTodo(text: string) {
     const todo = this.todoItems.filter({ hasText: new RegExp(`^${text}$`) }).first();
     await todo.hover();
-    await todo.locator('.destroy').click();
+    await todo.locator('.destroy').click({ force: true });
   }
 
   async filterBy(status: 'All' | 'Active' | 'Completed') {
