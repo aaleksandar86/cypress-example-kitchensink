@@ -11,3 +11,8 @@ cypress/fixtures/users.json
 .vscode
 env
 .DS_Store
+allure-report
+allure-results
+test-results
+
+
