@@ -17,6 +17,11 @@
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "e2e": "cypress run",
+    "test:pw": "playwright test",
+    "test:cucumber": "NODE_OPTIONS='--import tsx --no-warnings' cucumber-js cypress/e2e/*.feature --import tests/support/hooks.ts --import tests/todo.steps.ts -f allure-cucumberjs/reporter",
+    "test:gherkin": "start-server-and-test start 8080 'npm run test:cucumber && npm run allure:generate && npm run allure:open'",
+    "allure:generate": "allure generate allure-results --clean -o allure-report",
+    "allure:open": "allure open allure-report",
     "e2e:chrome": "cypress run --browser chrome",
     "e2e:edge": "cypress run --browser edge",
     "e2e:firefox": "cypress run --browser firefox",
@@ -62,10 +67,14 @@
   },
   "devDependencies": {
     "@bahmutov/print-env": "2.1.2",
+    "@cucumber/cucumber": "12.8.1",
     "@eslint/js": "10.0.1",
     "@eslint/json": "1.2.0",
     "@html-eslint/eslint-plugin": "0.59.0",
     "@stylistic/eslint-plugin": "5.10.0",
+    "allure-commandline": "2.38.1",
+    "allure-cucumberjs": "3.7.1",
+    "allure-playwright": "3.7.1",
     "cypress": "15.14.0",
     "eslint": "10.2.1",
     "eslint-plugin-cypress": "6.3.1",
@@ -73,9 +82,13 @@
     "eslint-plugin-yml": "3.3.1",
     "globals": "17.5.0",
     "husky": "9.1.7",
-    "start-server-and-test": "3.0.2"
+    "start-server-and-test": "3.0.2",
+    "ts-node": "10.9.2",
+    "tsx": "4.19.2",
+    "typescript": "6.0.3"
   },
   "engines": {
     "node": "^22.14.0 || >=24.11.0"
-  }
+  },
+  "keywords": []
 }
