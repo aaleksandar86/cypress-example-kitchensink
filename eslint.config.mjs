@@ -9,7 +9,7 @@ import pluginYml from 'eslint-plugin-yml'
 import pluginHtml from '@html-eslint/eslint-plugin'
 
 export default defineConfig([
-  globalIgnores(['app/assets/js/{vendor,todo}/']),
+  globalIgnores(['.config/*', 'app/assets/js/{vendor,todo}/', 'allure-report/**', 'allure-results/**']),
   {
     files: ['**/*.{,m}js'],
     extends: [
