@@ -1,102 +1,5 @@
 # Kitchen Sink [![renovate-app badge][renovate-badge]][renovate-app] [![semantic-release][semantic-image] ][semantic-url]
 
-This is an example app used to showcase [Cypress.io](https://www.cypress.io/) End-to-End (E2E) testing. The application demonstrates the use of most [Cypress API commands](https://on.cypress.io/api). Additionally this example app is configured to run E2E tests in various CI platforms.
-Several workflows demonstrate the CI use of [Cypress Docker images](https://github.com/cypress-io/cypress-docker-images) which provide convenient, pre-configured compatible environments for Cypress.
-The [tests](https://github.com/cypress-io/cypress-example-kitchensink/tree/master/cypress/e2e) are also heavily commented.
-
-To see the kitchen sink application, and to view the [Cypress API commands](https://on.cypress.io/api) demonstrated by the app, visit [example.cypress.io](https://example.cypress.io/).
-
-For a full reference of our documentation, go to [docs.cypress.io](https://docs.cypress.io/).
-
-For an example payment application demonstrating real-world usage of Cypress.io End-to-End (E2E) testing, go to the [cypress-io/cypress-realworld-app](https://github.com/cypress-io/cypress-realworld-app) repository.
-
-[renovate-badge]: https://img.shields.io/badge/renovate-enabled-brightgreen.svg?logo=renovatebot
-[renovate-app]: https://renovatebot.com/
-[semantic-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
-[semantic-url]: https://github.com/semantic-release/semantic-release
-
-## CI Status
-
-The following table lists live workflows from various CI providers. These each independently test the contents of this example repository. They run and record using [Cypress Cloud](https://on.cypress.io/guides/cloud/introduction) with their results displaying centrally under Cypress Cloud [ProjectId `4b7344`](https://cloud.cypress.io/#/projects/4b7344/runs). Each CI provider shows its build status on its own site:
-
-| CI Provider                                            | Workflow                                       | Build Status                                                            |   Docker example   |
-| :----------------------------------------------------- | :--------------------------------------------- | :---------------------------------------------------------------------- | :----------------: |
-| [CircleCI][CircleCi docs]                              | [.circleci/config.yml][CircleCI workflow]      | [![CircleCI][CircleCI badge]][CircleCI log]                             | :white_check_mark: |
-| [**cypress-io/github-action**][Cy GitHub Actions docs] | [using-action.yml][Cy GitHub Actions workflow] | [![Cypress GHA status][Cy GitHub Actions badge]][Cy GitHub Actions log] |                    |
-| [GitHub Actions][GHA docs]                             | [single.yml][GHA workflow single]              | [![Single tests status][GHA badge single]][GHA log single]              |                    |
-| [GitHub Actions][GHA docs]                             | [parallel.yml][GHA workflow parallel]          | [![Parallel tests status][GHA badge parallel]][GHA log parallel]        |                    |
-
-<!-- CI provider links -->
-[CircleCI docs]:            https://circleci.com/docs/
-[CircleCI badge]:           https://circleci.com/gh/cypress-io/cypress-example-kitchensink/tree/master.svg?style=shield
-[CircleCI log]:             https://circleci.com/gh/cypress-io/cypress-example-kitchensink/tree/master
-[CircleCI workflow]:        .circleci/config.yml
-
-[Cy GitHub Actions docs]:   https://github.com/cypress-io/github-action#readme
-[Cy GitHub Actions badge]:  https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/using-action.yml/badge.svg
-[Cy GitHub Actions log]:    https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/using-action.yml?query=branch%3Amaster
-[Cy GitHub Actions workflow]:  .github/workflows/using-action.yml
-
-[GHA docs]:      https://docs.github.com/en/actions
-[GHA badge single]:     https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/single.yml/badge.svg
-[GHA badge parallel]:     https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/parallel.yml/badge.svg
-[GHA log single]:       https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/single.yml?query=branch%3Amaster
-[GHA log parallel]:       https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/parallel.yml?query=branch%3Amaster
-[GHA workflow single]:  .github/workflows/single.yml
-[GHA workflow parallel]:  .github/workflows/parallel.yml
-
-You can find all CI results recorded on the Cypress Cloud
-[![Cypress Cloud](https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/simple/4b7344/master&style=flat&logo=cypress)](https://cloud.cypress.io/projects/4b7344/runs)
-
-## CI Workflow Examples
-
-This table shows additional examples of CI workflows. With the exception of GitHub Actions workflows, these are **not** live examples as in the table above and they may require modification before use. The GitHub Actions workflows are live and they run without recording to Cypress Cloud.
-
-| CI Provider                                           | Basic Config                                             | Full Parallel Config                                 |   Docker example   |
-| :---------------------------------------------------- | :------------------------------------------------------- | :--------------------------------------------------- | :----------------: |
-| [AWS Amplify][AWS Amplify docs]                       | [amplify.yml](amplify.yml)                               |                                                      |                    |
-| [AWS CodeBuild][AWS CodeBuild docs]                   | [basic/buildspec.yml](./basic/buildspec.yml)             | [buildspec.yml](buildspec.yml)                       |                    |
-| [Azure Pipelines][Azure Pipelines docs]               | [basic/azure-ci.yml](basic/azure-ci.yml)                 | [azure-ci.yml](azure-ci.yml)                         |                    |
-| [Buddy.works][Buddy.works docs]                       | [buddy.yml](buddy.yml)                                   |                                                      | :white_check_mark: |
-| [Buildkite][Buildkite docs]                           | [.buildkite/pipeline.yml](.buildkite/pipeline.yml)       |                                                      |                    |
-| [CircleCI][CircleCi docs]                             | [basic/.circleci/config.yml](basic/.circleci/config.yml) |                                                      | :white_check_mark: |
-| [GitHub Actions][GHA docs]                            | [chrome.yml](.github/workflows/chrome.yml)               |                                                      |                    |
-| [GitHub Actions][GHA docs]                            | [chrome-docker.yml](.github/workflows/chrome-docker.yml) |                                                      | :white_check_mark: |
-| [GitLab][GitLab docs]                                 | [basic/.gitlab-ci.yml](basic/.gitlab-ci.yml)             | [.gitlab-ci.yml](.gitlab-ci.yml)                     | :white_check_mark: |
-| [Jenkins][Jenkins docs]                               | [basic/Jenkinsfile](basic/Jenkinsfile)                   | [Jenkinsfile](Jenkinsfile)                           | :white_check_mark: |
-| [Semaphore 2.0][Semaphore 2.0 docs]                   | [basic/.semaphore.yml](basic/.semaphore.yml)             | [.semaphore/semaphore.yml](.semaphore/semaphore.yml) |                    |
-| [Travis CI][Travis CI docs]                           | [basic/.travis.yml](basic/.travis.yml)                   | [.travis.yml](.travis.yml)                           |                    |
-
-<!-- CI provider doc links -->
-[AWS Amplify docs]:             https://docs.amplify.aws/
-[AWS CodeBuild docs]:           https://docs.aws.amazon.com/codebuild/
-[Azure Pipelines docs]:         https://learn.microsoft.com/en-us/azure/devops/pipelines/
-[Buddy.works docs]:             https://buddy.works/docs
-[Buildkite docs]:               https://buildkite.com/docs
-[GitLab docs]:                  https://docs.gitlab.com/ee/ci/yaml/
-[Jenkins docs]:                 https://www.jenkins.io/doc/
-[Semaphore 2.0 docs]:           https://docs.semaphoreci.com/
-[Travis CI docs]:               https://docs.travis-ci.com/
-
-The Cypress documentation page [CI Provider Examples](https://docs.cypress.io/guides/continuous-integration/ci-provider-examples) provides some more examples with extensive guides for using Cypress with some of the most popular CI providers.
-
-## Run Tests
-
-### Local testing
-
-To run the tests from this repo on your local machine, first make sure your machine meets the [Cypress System Requirements](https://on.cypress.io/guides/getting-started/installing-cypress#System-requirements), including the installation of [Node.js](https://docs.cypress.io/guides/getting-started/installing-cypress#Installing-Nodejs) according to the version specified in the file [.node-version](./.node-version).
-
-Executing the following instructions will clone the repository, install dependencies and run Cypress:
-
-```shell
-git clone https://github.com/cypress-io/cypress-example-kitchensink.git
-cd cypress-example-kitchensink
-npm ci # install dependencies
-npm run local:run # run Cypress headlessly
-```
-
-`local:run` is a [package.json](./package.json) script that starts a local webserver and then uses [cypress run](https://on.cypress.io/command-line#cypress-run) to run Cypress headlessly.
-If you would like to run Cypress tests interactively, then run the following command which uses [cypress open](https://on.cypress.io/command-line#cypress-open) to run Cypress in headed mode. You can pick individual tests to run.
 
 ```shell
 npm run local:open
@@ -113,14 +16,39 @@ You can check that the server is running if you open a web browser and navigate 
 Then in a separate terminal window execute either
 
 ```shell
-npx cypress run # for headless mode
+npm run test:pw # headed mode is preconfigured as default
 ```
 
-or
+To run the entire suite (Gherkin/Cucumber) and open the report:
 
 ```shell
-npx cypress open # for headed interactive mode
+npm run test:gherkin
 ```
+This step:
+
+- Starts the Server: It launches the application on http://localhost:8080.
+- Runs Tests: It executes the Cucumber tests defined in the .feature files using the step definitions in tests/step-definitions/.
+- Generates Report: It processes the data in the allure-results folder.
+- Opens Allure: It starts a local web server to display the interactive Allure report in your default browser.
+
+If you want to run the steps individually to debug a specific failure:
+
+Run Cucumber Tests
+```shell
+npm run test:cucumber
+```
+
+Generate the Report
+```shell
+npm run allure:generate
+```
+
+Open the Report
+```shell
+npm run allure:open
+```
+
+
 
 #### Script and server structure
 
@@ -207,14 +135,4 @@ You will also need to have an account with the CI provider you want to test with
 - Refer to the [API](https://on.cypress.io/api/) documents to understand the Cypress API calls tested in this repo
 - Read [Installing Cypress](https://on.cypress.io/installing-cypress) for step-by-step information on installing Cypress in your own project
 
-## Support
 
-- For "how-to" questions and discussions, go to the Cypress [Discord Chat](https://on.cypress.io/discord) and be part of the worldwide user community!
-
-## Contributing
-
-Check out the [Contributing Guideline](./CONTRIBUTING.md).
-
-## Changelog
-
-See [Releases](https://github.com/cypress-io/cypress-example-kitchensink/releases).
