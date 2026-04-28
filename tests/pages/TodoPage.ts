@@ -34,17 +34,26 @@ export class TodoPage {
   }
 
   async editTodo(oldText: string, newText: string) {
-    await this.startEditingTodo(oldText);
-    await this.finishEditingTodo(newText);
+    const todoItem = this.todoItems.filter({ hasText: new RegExp(`^${oldText}$`) }).first();
+    
+    await todoItem.locator('label').dblclick();
+
+    // Wait for the 'editing' class to be applied to the <li> container
+    await expect(todoItem).toHaveClass(/editing/, { timeout: 10000 });
+    
+    const editInput = todoItem.locator('input.edit');
+    await editInput.fill(newText);
+    await editInput.press('Enter');
   }
 
   async startEditingTodo(text: string) {
     const todoItem = this.todoItems.filter({ hasText: new RegExp(`^${text}$`) }).first();
     await todoItem.locator('label').dblclick();
+    await expect(todoItem).toHaveClass(/editing/);
   }
 
   async finishEditingTodo(newText: string) {
-    const editInput = this.page.locator('.todo-list li.editing .edit');
+    const editInput = this.page.locator('li.editing .edit');
     await editInput.fill(newText);
     await editInput.press('Enter');
     await expect(editInput).toBeHidden();
@@ -91,15 +100,17 @@ export class TodoPage {
   }
 
   async expectTodoVisible(text: string) {
-    await expect(this.todoItems.filter({ hasText: new RegExp(`^${text}$`) })).toBeVisible();
+    const todoItem = this.todoItems.filter({ hasText: new RegExp(`^${text}$`) }).first();
+    await expect(todoItem).toBeVisible();
   }
 
   async expectTodoNotVisible(text: string) {
-    await expect(this.todoItems.filter({ hasText: new RegExp(`^${text}$`) })).not.toBeVisible();
+    await expect(this.page.getByText(text, { exact: true })).toBeHidden();
   }
 
   async expectTodoCompleted(text: string) {
-    await expect(this.todoItems.filter({ hasText: new RegExp(`^${text}$`) })).toHaveClass(/completed/);
+    const todoItem = this.todoItems.filter({ hasText: new RegExp(`^${text}$`) }).first();
+    await expect(todoItem).toHaveClass(/completed/);
   }
 
   async expectAllTodosCompleted() {

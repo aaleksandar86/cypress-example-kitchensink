@@ -30,7 +30,6 @@ test.describe('Todo List Management', () => {
   test('Editing an existing todo', async () => {
     const updatedText = 'Walk the dog in the park';
     await todoPage.editTodo('Walk the dog', updatedText);
-    await todoPage.page.keyboard.press('Enter');
     await todoPage.expectTodoVisible(updatedText);
     await todoPage.expectTodoNotVisible('Walk the dog');
   });
